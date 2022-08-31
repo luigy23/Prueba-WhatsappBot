@@ -52,7 +52,7 @@ client.on('ready', () => {
 
 client.on('message', msg => {
     if (msg.body == '!hola' || msg.body == '!hey' ||msg.body == '!hola') {
-        fotobyte()
+        fotobyte2()
         msg.reply('Bienvenido, para hacer tu pedido ir click en : http://192.168.1.3:3000');
     }
     if(msg.from=="5732092966004@c.us"){
@@ -67,11 +67,17 @@ client.on('message', msg => {
 
 //573209296004
 
-const fotobyte= (Melisa="573193896000@c.us") =>{
+const fotobyte= (Melisa="573209296004@c.us") =>{
     client.sendMessage(Melisa,"-Melisa manda un tetaByte   🤖")
     client.sendMessage(Melisa,"-xfa   🤖")
     client.sendMessage(Melisa,"-Dice mi creador que eres mu sexy  🤖")
     client.sendMessage(Melisa,"-Fin del comunicado Bye World  🤖")
+
+    
+}
+const fotobyte2= (Luigy="573193896000@c.us") =>{
+    client.sendMessage(Luigy,"Mensaje automatico   🤖")
+
 
     
 }
