@@ -1,3 +1,6 @@
-2022/08/30-21:46:26.275 684 Reusing MANIFEST C:\Users\usuario\Documents\Nodejs\WAbot\.wwebjs_auth\session\Default\Local Storage\leveldb/MANIFEST-000001
-2022/08/30-21:46:26.276 684 Recovering log #4
-2022/08/30-21:46:26.277 684 Reusing old log C:\Users\usuario\Documents\Nodejs\WAbot\.wwebjs_auth\session\Default\Local Storage\leveldb/000004.log 
+2022/08/30-22:07:07.232 1b50 Reusing MANIFEST C:\Users\usuario\Documents\Nodejs\WAbot\.wwebjs_auth\session\Default\Local Storage\leveldb/MANIFEST-000001
+2022/08/30-22:07:07.232 1b50 Recovering log #4
+2022/08/30-22:07:07.233 1b50 Reusing old log C:\Users\usuario\Documents\Nodejs\WAbot\.wwebjs_auth\session\Default\Local Storage\leveldb/000004.log 
+2022/08/30-22:10:09.461 26a8 Level-0 table #8: started
+2022/08/30-22:10:09.459 26a8 Level-0 table #8: 11005 bytes OK
+2022/08/30-22:10:09.464 26a8 Delete type=0 #4

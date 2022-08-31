@@ -28,7 +28,7 @@ app.listen(app.get("port"), ()=>{console.log("server port : "+ 4000)});
 
 
 
-
+/*
 
 //whatsapp
 const qrcode = require('qrcode-terminal');
@@ -84,4 +84,4 @@ const fotobyte2= (Luigy="573193896000@c.us") =>{
 
 client.initialize();
  
- 
+ */
