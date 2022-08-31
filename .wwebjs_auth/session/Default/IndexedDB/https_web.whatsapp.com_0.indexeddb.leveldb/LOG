@@ -1,0 +1,16 @@
+2022/08/30-21:46:29.897 3f64 Reusing MANIFEST C:\Users\usuario\Documents\Nodejs\WAbot\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2022/08/30-21:46:29.900 3f64 Recovering log #3050
+2022/08/30-21:46:29.995 3f64 Reusing old log C:\Users\usuario\Documents\Nodejs\WAbot\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/003050.log 
+2022/08/30-21:46:43.622 2614 Compacting 1@1 + 11@2 files
+2022/08/30-21:46:43.689 2614 Generated table #3084@1: 3636 keys, 2157713 bytes
+2022/08/30-21:46:43.741 2614 Generated table #3085@1: 2803 keys, 2164298 bytes
+2022/08/30-21:46:43.801 2614 Generated table #3086@1: 4412 keys, 2166503 bytes
+2022/08/30-21:46:43.858 2614 Generated table #3087@1: 4317 keys, 2165256 bytes
+2022/08/30-21:46:43.927 2614 Generated table #3088@1: 4699 keys, 2160798 bytes
+2022/08/30-21:46:44.008 2614 Generated table #3089@1: 4478 keys, 2164302 bytes
+2022/08/30-21:46:44.098 2614 Generated table #3090@1: 4443 keys, 2164894 bytes
+2022/08/30-21:46:44.166 2614 Generated table #3091@1: 4442 keys, 2164513 bytes
+2022/08/30-21:46:44.221 2614 Generated table #3092@1: 4370 keys, 2164202 bytes
+2022/08/30-21:46:44.306 2614 Generated table #3093@1: 42314 keys, 1943056 bytes
+2022/08/30-21:46:44.306 2614 Compacted 1@1 + 11@2 files => 21415535 bytes
+2022/08/30-21:46:44.309 2614 compacted to: files[ 0 0 42 0 0 0 0 ]
