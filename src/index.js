@@ -60,8 +60,7 @@ client.on('message', msg => {
 
     }
 
-    const contacto = msg.getContact();
-    console.log(contacto)
+    
     console.log( msg.from  + ": "+ msg.body)
 });
 
