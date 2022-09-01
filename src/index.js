@@ -9,7 +9,7 @@ cron.schedule("30 23 * * *",()=>{
     console.log("tarea a las 9:8")
     fotobyte()
 })
-
+/*
 //settings
 app.set("port", process.env.PORT || 4000)
 app.set("json spaces", 2)
@@ -26,9 +26,9 @@ app.use(require("./routes/index.js"))
 //iniciar server
 app.listen(app.get("port"), ()=>{console.log("server port : "+ 4000)});
 
+*/
 
 
-/*
 
 //whatsapp
 const qrcode = require('qrcode-terminal');
@@ -84,4 +84,4 @@ const fotobyte2= (Luigy="573193896000@c.us") =>{
 
 client.initialize();
  
- */
+ 
