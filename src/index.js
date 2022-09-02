@@ -5,9 +5,12 @@ const morgan = require("morgan")
 const cors = require('cors')
 const cron = require("node-cron")
 
-cron.schedule("30 4 * * *", () => {
+cron.schedule("30 11 * * *", () => {
   console.log("tarea a las 9:8")
   fotobyte()
+}, {
+  scheduled: true,
+  timezone: "America/Bogota"
 })
 /*
 //settings
@@ -31,12 +34,13 @@ app.listen(app.get("port"), ()=>{console.log("server port : "+ 4000)});
 
 //crear cron
 
-const crearCron = (hora, minuto, dia,mes,semana,mensaje) =>{
-
+const crearCron = (hora, minuto, dia, mes, semana, mensaje, telefono) => {
+  return(
   cron.schedule(`${minuto} ${hora} ${dia} ${mes} ${semana}`, () => {
-    mensaje()
+    client.sendMessage(telefono,mensaje)
 
-  })
+  },{ scheduled: true,
+    timezone: "America/Bogota"}))
 }
 
 //whatsapp
@@ -62,49 +66,58 @@ client.on('ready', () => {
 
 const crearRutina = (msg) => {
   let mensajesGuardados = []
-  let rutina = "* * * * *"
   const mensaje = msg.body
   if (mensaje.includes("!cm")) {
 
-    let comandos = mensaje.split(",")
-    if (comandos.length() == 4) {
-      let semana
-      if(comandos[2].length >4){
-        
-         switch (comandos[2]) {
-           case "lunes": semana=1
-           case "martes": semana=2
-           case "miercoles":semana=3
-           case "jueves": semana=4
-           case "viernes": semana=5
-           case "sabado":semana=6
-           case "domingo":semana=7
+    let comandos = mensaje.split("-")
+    if (comandos.length() == 5) {//verifica todos los datos
+      let semana = "*"
+      let dia = "*"
+      let mes = "*"
+      let hora = "*"
+      let minuto = "*"
+      let telefono =msg.from
+      if (comandos[1].length > 4) { //verificamos si es fecha o semana, si es semana entra
+        switch (comandos[2]) {
+          case "lunes": semana = 1
+          case "martes": semana = 2
+          case "miercoles": semana = 3
+          case "jueves": semana = 4
+          case "viernes": semana = 5
+          case "sabado": semana = 6
+          case "domingo": semana = 7
+          case "todos": semana = "*"
+          default: semana = "*"
 
-
-
-        rutina= "* * * * *"
-
-
+        }
+      }else{ //se ajustan las fechas
+        mes= parseInt(comandos[1].slice(0,2))
+        dia= parseInt(comandos[1].slice(2))
+      }
+      hora = parseInt( comandos[2].splice(0,2));
+      minuto = parseInt( comandos[2].splice(2));
+      if(comandos[4]!==""){
+        telefono=comandos[4]+"@c.us"
       }
 
-
-
-
-
-    } else {
-      msg.reply("incorrecto, el formato es:")
-      msg.sendMessage(msg.from, "!cm,fecha/dia,hora,mensaje")
-      msg.sendMessage(msg.from, "!cm,0223,0000,feliz cumple")
-      msg.sendMessage(msg.from, "!cm,lunes,1325,odio lo lunes")
-    }
-
-
+      //se crean cron job
+      
+      ()=>{msg.sendMessage(telefono,comandos[3])}
+      crearCron(hora,minuto,dia,mes,semana,comandos[3],telefono)
+    
+  
+  
+    }else { //manda error
+    msg.reply("incorrecto, el formato es:")
+    msg.sendMessage(msg.from, "!cm,fecha/dia,hora,mensaje")
+    msg.sendMessage(msg.from, "!cm,0223,0000,feliz cumple")
+    msg.sendMessage(msg.from, "!cm,lunes,1325,odio lo lunes")
   }
-}}
-
+}
+}
 
 client.on('message_create', msg => {
-
+  crearRutina(msg)
   if (msg.body == '!hola' || msg.body == '!hey' || msg.body == '!hola') {
     fotobyte2()
     msg.reply('Bienvenido, para hacer tu pedido ir click en : http://192.168.1.3:3000');
