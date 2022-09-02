@@ -5,57 +5,10 @@ const morgan = require("morgan")
 const cors = require('cors')
 const cron = require("node-cron")
 
-cron.schedule("30 11 * * *", () => {
-  console.log("tarea a las 9:8")
-  fotobyte()
-}, {
-  scheduled: true,
-  timezone: "America/Bogota"
-})
-
-cron.schedule("55 12 * * *", () => {
-  console.log("tarea a las 9:8")
-  client.sendMessage("573193896000@c.us","Mensaje 1255")
-}, {
-  scheduled: true,
-  timezone: "America/Bogota"
-})
-
-/*
-//settings
-app.set("port", process.env.PORT || 4000)
-app.set("json spaces", 2)
-
-//middlewares
-app.use(morgan("dev"));
-app.use(express.json());
-app.use(cors())
-app.use(express.urlencoded({extended:false}))
-//routes
-
-app.use(require("./routes/index.js"))
-
-//iniciar server
-app.listen(app.get("port"), ()=>{console.log("server port : "+ 4000)});
-
-*/
 
 
-//crear cron
 
-const crearCron = (hora, minuto, dia, mes, semana, mensaje, telefono) => {
-  
-    console.log("cron menssaje:")
-    console.log(`${minuto} ${hora} ${dia} ${mes} ${semana}`)
-
-  cron.schedule(`${minuto} ${hora} ${dia} ${mes} ${semana}`, () => {
-    client.sendMessage(telefono,mensaje)
-
-  },{ scheduled: true,
-    timezone: "America/Bogota"})
-}
-
-//whatsapp
+// CONEXION A WHATSAPP:
 const qrcode = require('qrcode-terminal');
 
 const { Client, LocalAuth } = require('whatsapp-web.js');
@@ -71,14 +24,33 @@ client.on('qr', qr => {
 
 client.on('ready', () => {
   console.log('Client is ready!');
+  client.sendMessage("573193896000@c.us","servidor activo ✅")
 });
+
+
+
+
+
+const crearCron = (hora, minuto, dia, mes, semana, mensaje, telefono) => {
+  
+    console.log("cron menssaje:")
+    console.log(`${minuto} ${hora} ${dia} ${mes} ${semana} ${telefono}`)
+
+  cron.schedule(`${minuto} ${hora} ${dia} ${mes} ${semana}`, () => {
+    client.sendMessage(telefono,mensaje)
+
+  },{ scheduled: true,
+    timezone: "America/Bogota"})
+}
+
+
 
 
 
 
 const crearRutina = (msg) => {
   const mensaje = msg.body
-  console.log(mensaje)
+  console.log(mensaje,msg.from)
   if (mensaje.includes("!cm")) {
     console.log("verificado el !cm")
     let comandos = mensaje.split("-")
@@ -138,6 +110,8 @@ const crearRutina = (msg) => {
 }
 }
 
+
+
 client.on('message_create', msg => {
   crearRutina(msg)
   if (msg.body == '!hola' || msg.body == '!hey' || msg.body == '!hola') {
@@ -171,4 +145,25 @@ const fotobyte2 = (Luigy = "573193896000@c.us") => {
 }
 
 client.initialize();
+
+
+
+
+/// RUTINAS PRE DEFINIDAS
+cron.schedule("30 23 * * *", () => {
+  console.log("tarea a las 9:8")
+  fotobyte()
+}, {
+  scheduled: true,
+  timezone: "America/Bogota"
+})
+
+cron.schedule("55 12 * * *", () => {
+  console.log("tarea a las 9:8")
+  client.sendMessage("573193896000@c.us","Mensaje 1255")
+}, {
+  scheduled: true,
+  timezone: "America/Bogota"
+})
+
 
