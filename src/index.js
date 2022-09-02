@@ -73,6 +73,7 @@ const crearRutina = (msg) => {
     
     console.log(comandos)
     if (comandos.length() == 5) {//verifica todos los datos
+      console.log("verificado el tamaño datos")
       let semana = "*"
       let dia = "*"
       let mes = "*"
@@ -103,7 +104,7 @@ const crearRutina = (msg) => {
       }
 
       //se crean cron job
-      
+      console.log(hora,minuto,dia,mes,semana,comandos[3],telefono)
       msg.sendMessage(msg.from, "creando cron...")
       crearCron(hora,minuto,dia,mes,semana,comandos[3],telefono)
       msg.sendMessage(msg.from, "creado")
