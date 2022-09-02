@@ -12,6 +12,15 @@ cron.schedule("30 11 * * *", () => {
   scheduled: true,
   timezone: "America/Bogota"
 })
+
+cron.schedule("55 12 * * *", () => {
+  console.log("tarea a las 9:8")
+  client.sendMessage("573193896000@c.us","Mensaje 1255")
+}, {
+  scheduled: true,
+  timezone: "America/Bogota"
+})
+
 /*
 //settings
 app.set("port", process.env.PORT || 4000)
