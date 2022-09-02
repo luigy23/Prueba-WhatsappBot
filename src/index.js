@@ -72,7 +72,7 @@ const crearRutina = (msg) => {
     let comandos = mensaje.split("-")
     
     console.log(comandos)
-    if (comandos.length() == 5) {//verifica todos los datos
+    if (comandos.length() == 4) {//verifica todos los datos
       console.log("verificado el tamaño datos")
       let semana = "*"
       let dia = "*"
