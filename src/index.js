@@ -74,6 +74,7 @@ const crearRutina = (msg) => {
     console.log(comandos)
     if (comandos.length == 5) {//verifica todos los datos
       console.log("verificado el tamaño datos")
+      msg.reply("tamaño verificado")
       let semana = "*"
       let dia = "*"
       let mes = "*"
@@ -90,20 +91,24 @@ const crearRutina = (msg) => {
           case "sabado": semana = 6
           case "domingo": semana = 7
           case "todos": semana = "*"
-          default: semana = "*"
+          default: console.log("semana = "+semana)
 
         }
       }else{ //se ajustan las fechas
         mes= parseInt(comandos[1].slice(0,2))
         dia= parseInt(comandos[1].slice(2))
+        console.log("fechas = "+mes +dia)
       }
-      hora = parseInt( comandos[2].splice(0,2));
-      minuto = parseInt( comandos[2].splice(2));
+      hora = parseInt( comandos[2].slice(0,2));
+      minuto = parseInt( comandos[2].slice(2));
+      console.log("tiempo = "+hora +minuto)
       if(comandos[4]!==""){
         telefono=comandos[4]+"@c.us"
+        console.log("tel = "+telefono)
       }
 
       //se crean cron job
+      msg.reply("aqui ya se creo todo segun")
       console.log(hora,minuto,dia,mes,semana,comandos[3],telefono)
       msg.sendMessage(msg.from, "creando cron...")
       crearCron(hora,minuto,dia,mes,semana,comandos[3],telefono)
