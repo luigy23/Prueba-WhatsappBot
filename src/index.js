@@ -101,11 +101,11 @@ const crearRutina = (msg) => {
   
     }else { //manda error
     console.log("incorrecto, el formato es:")
-    msg.sendMessage(msg.from, "!cm,fecha/")  
-    msg.reply("incorrecto, el formato es:")
-    msg.sendMessage(msg.from, "!cm,fecha/dia,hora,mensaje")
-    msg.sendMessage(msg.from, "!cm,0223,0000,feliz cumple")
-    msg.sendMessage(msg.from, "!cm,lunes,1325,odio lo lunes")
+    
+    client.reply("incorrecto, el formato es:")
+    client.sendMessage(msg.from, "!cm,fecha/dia,hora,mensaje")
+    client.sendMessage(msg.from, "!cm,0223,0000,feliz cumple")
+    client.sendMessage(msg.from, "!cm,lunes,1325,odio lo lunes")
   }
 }
 }
