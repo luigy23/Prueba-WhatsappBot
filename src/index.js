@@ -65,11 +65,13 @@ client.on('ready', () => {
 
 
 const crearRutina = (msg) => {
-  let mensajesGuardados = []
   const mensaje = msg.body
+  console.log(mensaje)
   if (mensaje.includes("!cm")) {
-
+    console.log("verificado el !cm")
     let comandos = mensaje.split("-")
+    
+    console.log(comandos)
     if (comandos.length() == 5) {//verifica todos los datos
       let semana = "*"
       let dia = "*"
@@ -108,6 +110,8 @@ const crearRutina = (msg) => {
   
   
     }else { //manda error
+    console.log("incorrecto, el formato es:")
+    msg.sendMessage(msg.from, "!cm,fecha/")  
     msg.reply("incorrecto, el formato es:")
     msg.sendMessage(msg.from, "!cm,fecha/dia,hora,mensaje")
     msg.sendMessage(msg.from, "!cm,0223,0000,feliz cumple")
