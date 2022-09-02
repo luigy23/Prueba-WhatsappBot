@@ -102,9 +102,9 @@ const crearRutina = (msg) => {
 
       //se crean cron job
       
-      ()=>{msg.sendMessage(telefono,comandos[3])}
+      msg.sendMessage(msg.from, "creando cron...")
       crearCron(hora,minuto,dia,mes,semana,comandos[3],telefono)
-    
+      msg.sendMessage(msg.from, "creado")
   
   
     }else { //manda error
