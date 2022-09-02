@@ -35,12 +35,15 @@ app.listen(app.get("port"), ()=>{console.log("server port : "+ 4000)});
 //crear cron
 
 const crearCron = (hora, minuto, dia, mes, semana, mensaje, telefono) => {
-  return(
+  
+    console.log("cron menssaje:")
+    console.log(`${minuto} ${hora} ${dia} ${mes} ${semana}`)
+
   cron.schedule(`${minuto} ${hora} ${dia} ${mes} ${semana}`, () => {
     client.sendMessage(telefono,mensaje)
 
   },{ scheduled: true,
-    timezone: "America/Bogota"}))
+    timezone: "America/Bogota"})
 }
 
 //whatsapp
@@ -110,9 +113,9 @@ const crearRutina = (msg) => {
       //se crean cron job
       msg.reply("aqui ya se creo todo segun")
       console.log(hora,minuto,dia,mes,semana,comandos[3],telefono)
-      msg.sendMessage(msg.from, "creando cron...")
+      client.sendMessage(msg.from, "creando cron...")
       crearCron(hora,minuto,dia,mes,semana,comandos[3],telefono)
-      msg.sendMessage(msg.from, "creado")
+      client.sendMessage(msg.from, "creado")
   
   
     }else { //manda error
