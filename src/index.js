@@ -31,6 +31,9 @@ client.on('ready', () => {
 
 /// ESCUCHAR MENSAJES
 
+let contador = 0
+let listaRutinas = []
+
 client.on('message_create', msg => {
   crearRutina(msg)
   
@@ -64,6 +67,75 @@ client.initialize();
 
 
 /// PROGRAMAR RUTINAS
+const crearRutina = (msg) => {
+  const mensaje = msg.body
+  console.log(mensaje,msg.from)
+  if (mensaje.includes("!cm")) {
+    console.log("verificado el !cm")
+    let comandos = mensaje.split("-")
+    
+    console.log(comandos)
+    if (comandos.length == 5) {//verifica todos los datos
+      console.log("verificado el tamaño datos")
+      msg.reply("tamaño verificado")
+      let semana = "*"
+      let dia = "*"
+      let mes = "*"
+      let hora = "*"
+      let minuto = "*"
+      let telefono =msg.from
+      if (comandos[1].length > 4) { //verificamos si es fecha o semana, si es semana entra
+        switch (comandos[1]) {
+          case "lunes": semana = 1
+          case "martes": semana = 2
+          case "miercoles": semana = 3
+          case "jueves": semana = 4
+          case "viernes": semana = 5
+          case "sabado": semana = 6
+          case "domingo": semana = 7
+          case "todos": semana = "*"
+          default: console.log("semana = "+semana)
+  
+        }
+      }else if(comandos[1]!==""){ //se ajustan las fechas
+        mes= parseInt(comandos[1].slice(0,2))
+        dia= parseInt(comandos[1].slice(2))
+        
+      }console.log("fechas = "+mes +dia)
+      if (comandos[2]!==""){
+      hora = parseInt( comandos[2].slice(0,2));
+      minuto = parseInt( comandos[2].slice(2));
+      console.log("tiempo = "+hora +minuto)}
+      if(comandos[4]!==""){
+        telefono=comandos[4]+"@c.us"
+        
+      }console.log("tel = "+telefono)
+      
+
+
+      //se crean cron job
+      msg.reply("aqui ya se creo todo segun")
+      console.log(hora,minuto,dia,mes,semana,comandos[3],telefono)
+
+
+      client.sendMessage(msg.from, "creando cron...")
+      listaRutinas[contador+1] = crearCron(hora,minuto,dia,mes,semana,comandos[3],telefono)
+      client.sendMessage(msg.from, "creado")
+  
+  
+    }else { //manda error
+    console.log("incorrecto, el formato es:")
+    
+    client.reply("incorrecto, el formato es:")
+    client.sendMessage(msg.from, "!cm,fecha/dia,hora,mensaje")
+    client.sendMessage(msg.from, "!cm,0223,0000,feliz cumple")
+    client.sendMessage(msg.from, "!cm,lunes,1325,odio lo lunes")
+  }
+  }
+  }
+
+
+
 const crearCron = (hora, minuto, dia, mes, semana, mensaje, telefono) => {
   
   console.log("cron menssaje:")
@@ -75,67 +147,7 @@ cron.schedule(`${minuto} ${hora} ${dia} ${mes} ${semana}`, () => {
 },{ scheduled: true,
   timezone: "America/Bogota"})
 }
-const crearRutina = (msg) => {
-const mensaje = msg.body
-console.log(mensaje,msg.from)
-if (mensaje.includes("!cm")) {
-  console.log("verificado el !cm")
-  let comandos = mensaje.split("-")
-  
-  console.log(comandos)
-  if (comandos.length == 5) {//verifica todos los datos
-    console.log("verificado el tamaño datos")
-    msg.reply("tamaño verificado")
-    let semana = "*"
-    let dia = "*"
-    let mes = "*"
-    let hora = "*"
-    let minuto = "*"
-    let telefono =msg.from
-    if (comandos[1].length > 4) { //verificamos si es fecha o semana, si es semana entra
-      switch (comandos[2]) {
-        case "lunes": semana = 1
-        case "martes": semana = 2
-        case "miercoles": semana = 3
-        case "jueves": semana = 4
-        case "viernes": semana = 5
-        case "sabado": semana = 6
-        case "domingo": semana = 7
-        case "todos": semana = "*"
-        default: console.log("semana = "+semana)
 
-      }
-    }else{ //se ajustan las fechas
-      mes= parseInt(comandos[1].slice(0,2))
-      dia= parseInt(comandos[1].slice(2))
-      console.log("fechas = "+mes +dia)
-    }
-    hora = parseInt( comandos[2].slice(0,2));
-    minuto = parseInt( comandos[2].slice(2));
-    console.log("tiempo = "+hora +minuto)
-    if(comandos[4]!==""){
-      telefono=comandos[4]+"@c.us"
-      console.log("tel = "+telefono)
-    }
-
-    //se crean cron job
-    msg.reply("aqui ya se creo todo segun")
-    console.log(hora,minuto,dia,mes,semana,comandos[3],telefono)
-    client.sendMessage(msg.from, "creando cron...")
-    crearCron(hora,minuto,dia,mes,semana,comandos[3],telefono)
-    client.sendMessage(msg.from, "creado")
-
-
-  }else { //manda error
-  console.log("incorrecto, el formato es:")
-  
-  client.reply("incorrecto, el formato es:")
-  client.sendMessage(msg.from, "!cm,fecha/dia,hora,mensaje")
-  client.sendMessage(msg.from, "!cm,0223,0000,feliz cumple")
-  client.sendMessage(msg.from, "!cm,lunes,1325,odio lo lunes")
-}
-}
-}
 
 
 /// RUTINAS PRE DEFINIDAS
@@ -167,7 +179,7 @@ const fotobyte = (Melisa = "573209296004@c.us") => {
 }
 const fotobyte2 = (Luigy = "573193896000@c.us") => {
   client.sendMessage(Luigy, "Mensaje automatico   🤖")
-
+  console.log("enviado")
 
 
 }
