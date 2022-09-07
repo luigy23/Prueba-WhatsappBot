@@ -119,7 +119,7 @@ const crearRutina = (msg) => {
 
 
       client.sendMessage(msg.from, "creando cron...")
-      listaRutinas[contador+1] = crearCron(hora,minuto,dia,mes,semana,comandos[3],telefono)
+      crearCron(hora,minuto,dia,mes,semana,comandos[3],telefono)
       client.sendMessage(msg.from, "creado")
   
   
